@@ -1,0 +1,4 @@
+! Notice !
+You must import the java-library mysql-connector-java-x.x.x-bin.jar by your self.
+I'am using version 5.1.18
+You can get it under https://dev.mysql.com/downloads/connector/j/
