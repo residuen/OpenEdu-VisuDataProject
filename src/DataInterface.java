@@ -1,5 +1,5 @@
 
-public interface DataReader {
+public interface DataInterface {
 	
 	public void connectDatasource();
 	
