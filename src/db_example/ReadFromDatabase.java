@@ -4,6 +4,8 @@ import interfaces.DataInterface;
 
 public class ReadFromDatabase implements DataInterface {
 
+	private DBConnection connection = new DBConnection();
+	
 	@Override
 	public void connectDatasource() {
 		// TODO Auto-generated method stub

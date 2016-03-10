@@ -25,27 +25,17 @@ import javax.swing.JOptionPane;
 
 public class DBConnection {
 	
-	private String driver = "com.mysql.jdbc.Driver";	// Datenbank-Treiber
-	private String dbTyp = "jdbc:mysql";				// DB-Connection-Prefix
-	private String dbPort = "3306";						// Port der Datenbank
-	private String dbName = "testarduino";				// Datenbankname
-	private String dbUser = "arduinoboy";				// Benutzername
-	private String dbIpAdress = "localhost";	 		// Adresse der Datenbank
-	private String dbUserPasswd = "ardrapsknubbel";		// Kennwort des Benutzers
-	
-	private String sqlStatement = ""; //"SELECT * FROM users";	// SQL-Statement
+	private String driver 		= "com.mysql.jdbc.Driver";	// Datenbank-Treiber
+	private String dbTyp 		= "jdbc:mysql";				// DB-Connection-Prefix
+	private String dbPort 		= "3306";					// Port der Datenbank
+	private String dbName 		= "testberry";				// Datenbankname
+	private String dbUser 		= "testberryuser";			// Benutzername
+	private String dbIpAdress 	= "localhost";	 			// Adresse der Datenbank
+//	private String dbIpAdress 	= "192.168.20.201";	 		// Adresse der Datenbank
+	private String dbUserPasswd = "testberrykennwort";		// Kennwort des Benutzers
 
-	public DBConnection()
-	{
-		setDriver(driver);			// Datenbank-Treiber
-		setDbTyp(dbTyp);				// DB-COnnection-Prefix
-		setDbPort(dbPort);				// Port der Datenbank
-		setDbName(dbName); 				// Datenbankname
-		setDbUser(dbUser); 				// Benutzername
-		setDbIpAdress(dbIpAdress); 		// Adresse der Datenbank
-		setDbUserPasswd(dbUserPasswd);	// Kennwort des Benutzers
-	}
-	
+	private String sqlStatement = ""; 						// SQL-Statement
+
 	/**
 	 * Anfrage senden und RecordSet zurueckgeben
 	 * @return

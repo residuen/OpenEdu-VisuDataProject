@@ -1,3 +1,5 @@
+import java.awt.Component;
+
 import javax.swing.JFrame;
 
 
@@ -7,8 +9,17 @@ public class VisuFrame extends JFrame {
 	{
 		super(title);
 		
-		setSize(640, 480);
+		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		setSize(800, 480);
 		setVisible(true);
+	}
+	
+	public void addVisuComponent(Component component)
+	{
+		getContentPane().removeAll();
+		getContentPane().add(component);
+		
+		repaint();
 	}
 
 }

@@ -5,6 +5,8 @@ import javax.swing.JLabel;
 import javax.swing.UIManager;
 import javax.swing.UnsupportedLookAndFeelException;
 
+import db_example.DBExamplePanel;
+
 /**
  * Initialisiert wichtige Objekte
  * setzt das Look&Feel und baut die GUI auf
@@ -28,6 +30,7 @@ public class Start
 		
 		VisuFrame mainFrame = new VisuFrame("VisuDataProject - Visualisierung von Prozessdaten");
 		mainFrame.getContentPane().setLayout(new BorderLayout());		
+		mainFrame.getContentPane().add(new DBExamplePanel());	// Einfügen der Beispielvisualisierung
 		mainFrame.setVisible(true);
 		mainFrame.getContentPane().validate();
 	}
