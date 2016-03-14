@@ -1,11 +1,14 @@
 import java.awt.BorderLayout;
 import java.awt.Color;
+import java.awt.GridLayout;
 
 import javax.swing.JLabel;
 import javax.swing.UIManager;
 import javax.swing.UnsupportedLookAndFeelException;
 
-import db_example.DBExamplePanel;
+import examples.datenbank_1.DBExamplePanel;
+import examples.datenbank_1.DBExamplePanel_Threadtest;
+import examples.http_1.HttpGetArduinoExample;
 
 /**
  * Initialisiert wichtige Objekte
@@ -23,14 +26,16 @@ public class Start
 //		userName = userName.substring(userName.lastIndexOf("\\")+1);
 //		System.out.println("userName="+userName);
 
-		JLabel status = new JLabel("Status:");
-		status.setOpaque(true);
-		status.setForeground(Color.BLACK);
-		status.setBackground(Color.WHITE);
+//		JLabel status = new JLabel("Status:");
+//		status.setOpaque(true);
+//		status.setForeground(Color.BLACK);
+//		status.setBackground(Color.WHITE);
 		
 		VisuFrame mainFrame = new VisuFrame("VisuDataProject - Visualisierung von Prozessdaten");
 		mainFrame.getContentPane().setLayout(new BorderLayout());		
-		mainFrame.getContentPane().add(new DBExamplePanel());	// Einfügen der Beispielvisualisierung
+		mainFrame.getContentPane().add(new HttpGetArduinoExample());	// Einfügen der Beispielvisualisierung
+//		mainFrame.getContentPane().add(new DBExamplePanel_Threadtest());	// Einfügen der Beispielvisualisierung
+//		mainFrame.getContentPane().add(new DBExamplePanel());	// Einfügen der Beispielvisualisierung
 		mainFrame.setVisible(true);
 		mainFrame.getContentPane().validate();
 	}
