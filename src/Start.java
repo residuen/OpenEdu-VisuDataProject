@@ -1,35 +1,19 @@
 import java.awt.BorderLayout;
-import java.awt.Color;
-import java.awt.GridLayout;
-
-import javax.swing.JLabel;
 import javax.swing.UIManager;
 import javax.swing.UnsupportedLookAndFeelException;
 
-import examples.datenbank_1.DBExamplePanel;
-import examples.http_1.HttpGetArduinoExample;
 import examples.test.ThreadExamplePanel;
 
 /**
  * Initialisiert wichtige Objekte
  * setzt das Look&Feel und baut die GUI auf
- * @author bettray
+ * @author blauel
  */
 public class Start
 {
 	public Start()
 	{
 		initLookAndFeel();	// Setzen des Look & Feels
-		
-//		HashMap<String, Object> inputComponents = new HashMap<String,Object>(); // Nimmt verschiedene Compontenten auf	
-//		String userName = System.getProperty("user.home");
-//		userName = userName.substring(userName.lastIndexOf("\\")+1);
-//		System.out.println("userName="+userName);
-
-//		JLabel status = new JLabel("Status:");
-//		status.setOpaque(true);
-//		status.setForeground(Color.BLACK);
-//		status.setBackground(Color.WHITE);
 		
 		VisuFrame mainFrame = new VisuFrame("VisuDataProject - Visualisierung von Prozessdaten");
 		mainFrame.getContentPane().setLayout(new BorderLayout());

@@ -8,3 +8,4 @@ Vorgesehene Datenquellen:
 	- Datenbank
 	
 Visualisierung
+Die Visualisierung wird mittels Java-Swing und Java2D realisiert

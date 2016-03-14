@@ -1,4 +1,4 @@
-package examples.http_1;
+package examples.test;
 
 import java.awt.Color;
 import java.awt.Graphics;
@@ -7,15 +7,11 @@ import java.awt.image.BufferedImage;
 import java.io.IOException;
 
 import javax.imageio.ImageIO;
+import javax.swing.JLabel;
 import javax.swing.JPanel;
 
-public class HttpGetArduinoExample extends JPanel {
+public class ThreadExamplePanel extends JPanel {
 	
-//	private final String IP_ARDUINO = "192.168.1.177";
-	
-	// Objekt, um HTTP-Daten aus dem Internet oder Intranet zu lesen 
-	private HTTPClientConnection clientConnection = new HTTPClientConnection();
-
 	// Image-Objekte fuer grafik_Komponenten
 	private BufferedImage signal_rot;
 	private BufferedImage signal_gruen;
@@ -24,17 +20,17 @@ public class HttpGetArduinoExample extends JPanel {
 	private BufferedImage silo_lang;
 	private BufferedImage silo_mittel;
 	private BufferedImage silo_klein;
-
+ 
 	// Variablen zum Speichern der Messdaten 
 	private int value_silo_lang = 500;
 	private int value_silo_mittel = 200;
-	private int value_silo_klein = 670;
+	private double value_silo_klein = 670;
 	private int value_hupe1 = 1;
 	private int value_hupe2 = 0;
 	private int value_signal1 = 0;
 	private int value_signal2 = 1;
 
-	public HttpGetArduinoExample()
+	public ThreadExamplePanel()
 	{
 		// Laden der Bilder
 		try {
@@ -49,10 +45,10 @@ public class HttpGetArduinoExample extends JPanel {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-
+		
 		init();
 	}
-
+	
 	private void init()
 	{
 		// Worker-Thread erzeugen
@@ -60,80 +56,44 @@ public class HttpGetArduinoExample extends JPanel {
 		{
 			public void run()
 			{
-				String anfrage = ""; 	// Speichert anfrageergebnis
-				String daten[];			// zum speichern von HTTP-Daten in einem Array
-
 				// Endlosschleife
 				while(true)
 				{
-					
-					// HTTP-Anfrage an URL oder IP-Adresse senden, Ergebnis in anfrage speichern
-					anfrage = clientConnection.sendRequest("http://192.168.1.177");
-//					 System.out.println("anfrage="+anfrage);
-					
-					// Loeschen nicht benoetigter Zeichen 
-					anfrage = anfrage.replaceAll("<!DOCTYPE HTML><html>", "").replaceAll("</html>", "");
-//					 System.out.println("anfrage="+anfrage);
-					
-					// Daten nach Zeichenkette "<br />" teilen und in Array speichern
-					daten = anfrage.split("<br />");
-
-					// Schleife zum durchlaufen des Arrays
-					for (String s : daten) {
-//						 System.out.println(s);
-
-						// Die Werte aller Analog- und Digitalpins auslesen und in Variablen speichern 
-						if (s.contains("pin,2,"))
-							value_signal1 = Integer.parseInt(s.split(",")[2]);
-						else
-						if (s.contains("pin,3,"))
-							value_signal2 = Integer.parseInt(s.split(",")[2]);
-						else
-						if (s.contains("pin,4,"))
-							value_hupe1 = Integer.parseInt(s.split(",")[2]);
-						else
-						if (s.contains("pin,5,"))
-							value_hupe2 = Integer.parseInt(s.split(",")[2]);
-						else
-						if (s.contains("adc,0,")) {
-							value_silo_lang = Integer.parseInt(s.split(",")[2]);
-
-							if (value_silo_lang > 900)
-								value_silo_lang = 900;
-						}
-						else
-						if (s.contains("adc,1,")) {
-							value_silo_mittel = Integer.parseInt(s.split(",")[2]);
-
-							if (value_silo_mittel >= 750)
-								value_silo_mittel = 750;
-						}
-						else
-						if (s.contains("adc,2,")) {
-							value_silo_klein = Integer
-									.parseInt(s.split(",")[2]);
-
-							if (value_silo_klein >= 600)
-								value_silo_klein = 600;
-						}
-						
-						continue;
+					// per Zufall Zustaende ( 1 oder 0) von Hupen und Signalen erzeugen
+					if(value_silo_lang%100 == 0)
+					{
+						value_hupe1 = (int)(Math.random()*2.0);
+						value_hupe2 = (int)(Math.random()*2.0);
+						value_signal1 = (int)(Math.random()*2.0);
+						value_signal2 = (int)(Math.random()*2.0);
 					}
-
+					
+					// Silouellstand bis Grenzwert hochzaehlen
+					value_silo_lang += 6;
+					if(value_silo_lang>=900) // Wenn Grenzwert erreicht ... 
+						value_silo_lang = 0; // ... Wert zuruecksetzen
+					
+					// Silouellstand bis Grenzwert runterzaehlen
+					value_silo_mittel-=6;
+					if(value_silo_mittel<=0) 	 // Wenn Grenzwert erreicht ... 
+						value_silo_mittel = 750; // ... Wert zuruecksetzen
+					
+					// Silouellstand bis Grenzwert vervielfachen um Faktor 1.25
+					value_silo_klein*= 1.25;
+					if(value_silo_klein>=600) 	// Wenn Grenzwert erreicht ... 
+						value_silo_klein = 20; 	// ... Wert zuruecksetzen
+					
 					// Anweisung zum Neuzeichnen des Fensters geben
 					repaint();
 					
 					// Warte-Zyklus von 75ms einstellen
-					try {
-						Thread.sleep(75);
-					} catch (InterruptedException e) {
-						e.printStackTrace();
-					}
-				}	// Ende der Endlosschleife
+					try { Thread.sleep(75); }
+					catch (InterruptedException e) { e.printStackTrace(); }
+				}
 			}
 		}.start();	// Starten des Worker-Threads
 	}
-
+	
 	/**
 	 * Zeichnen der Grafik-Componenten und Fuellstaende
 	 */
