@@ -7,8 +7,8 @@ import javax.swing.UIManager;
 import javax.swing.UnsupportedLookAndFeelException;
 
 import examples.datenbank_1.DBExamplePanel;
-import examples.datenbank_1.DBExamplePanel_Threadtest;
 import examples.http_1.HttpGetArduinoExample;
+import examples.test.ThreadExamplePanel;
 
 /**
  * Initialisiert wichtige Objekte
@@ -32,10 +32,17 @@ public class Start
 //		status.setBackground(Color.WHITE);
 		
 		VisuFrame mainFrame = new VisuFrame("VisuDataProject - Visualisierung von Prozessdaten");
-		mainFrame.getContentPane().setLayout(new BorderLayout());		
-		mainFrame.getContentPane().add(new HttpGetArduinoExample());	// Einfügen der Beispielvisualisierung
-//		mainFrame.getContentPane().add(new DBExamplePanel_Threadtest());	// Einfügen der Beispielvisualisierung
+		mainFrame.getContentPane().setLayout(new BorderLayout());
+		
+		// Einfügen der Beispielvisualisierung mit Selbsttest
+		mainFrame.getContentPane().add(new ThreadExamplePanel());	// Einfügen der Beispielvisualisierung
+		
+		// Einfügen der Beispielvisualisierung mit Arduino und Ethernetshield
+//		mainFrame.getContentPane().add(new HttpGetArduinoExample());
+		
+		// Einfügen der Beispielvisualisierung mit Datenbankabfrage
 //		mainFrame.getContentPane().add(new DBExamplePanel());	// Einfügen der Beispielvisualisierung
+		
 		mainFrame.setVisible(true);
 		mainFrame.getContentPane().validate();
 	}

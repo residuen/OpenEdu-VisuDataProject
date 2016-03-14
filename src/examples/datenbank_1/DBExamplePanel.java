@@ -80,10 +80,6 @@ public class DBExamplePanel extends JPanel {
 		g2d.fillRect(500+20, silo_mittel.getHeight()+230-5-hoehe, breite, hoehe);
 
 		hoehe = (int)(silo_klein.getHeight()*((double)value_silo_klein / 1023d));
-		g2d.fillRect(350+20, silo_klein.getHeight()+295-5-hoehe, breite, hoehe);
-		
-		
+		g2d.fillRect(350+20, silo_klein.getHeight()+295-5-hoehe, breite, hoehe);		
 	}
-
-
 }

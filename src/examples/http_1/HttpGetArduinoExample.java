@@ -34,16 +34,13 @@ public class HttpGetArduinoExample extends JPanel {
 
 	public HttpGetArduinoExample() {
 		try {
-			silo_lang = ImageIO.read(getClass().getResource("silo_lang_100breit.png"));
-			silo_mittel = ImageIO.read(getClass().getResource(
-					"silo_mittel_100breit.png"));
-			silo_klein = ImageIO.read(getClass().getResource(
-					"silo_klein_100breit.png"));
-			signal_rot = ImageIO.read(getClass().getResource("signal_rot.png"));
-			signal_gruen = ImageIO.read(getClass().getResource(
-					"signal_gruen.png"));
-			hupe = ImageIO.read(getClass().getResource("hupe.png"));
-			hupe_rot = ImageIO.read(getClass().getResource("hupe_rot.png"));
+			silo_lang = ImageIO.read(getClass().getResource("/examples/images/silo_lang_100breit.png"));
+			silo_mittel = ImageIO.read(getClass().getResource("/examples/images/silo_mittel_100breit.png"));
+			silo_klein = ImageIO.read(getClass().getResource("/examples/images/silo_klein_100breit.png"));
+			signal_rot = ImageIO.read(getClass().getResource("/examples/images/signal_rot.png"));
+			signal_gruen = ImageIO.read(getClass().getResource("/examples/images/signal_gruen.png"));
+			hupe = ImageIO.read(getClass().getResource("/examples/images/hupe.png"));
+			hupe_rot = ImageIO.read(getClass().getResource("/examples/images/hupe_rot.png"));			
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
