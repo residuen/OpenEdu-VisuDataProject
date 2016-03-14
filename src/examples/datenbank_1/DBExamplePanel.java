@@ -1,4 +1,4 @@
-package db_example;
+package examples.datenbank_1;
 
 import java.awt.Color;
 import java.awt.Graphics;

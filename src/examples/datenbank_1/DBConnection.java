@@ -1,4 +1,4 @@
-package db_example;
+package examples.datenbank_1;
 /*
 DBConnection: Eine Klasse um eine Datenbankverbindung
 zu erstellen und SQL-Abfragen durchzufuehren.

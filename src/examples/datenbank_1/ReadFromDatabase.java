@@ -1,4 +1,4 @@
-package db_example;
+package examples.datenbank_1;
 
 import interfaces.DataInterface;
 
