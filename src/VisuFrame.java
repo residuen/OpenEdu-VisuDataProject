@@ -10,7 +10,7 @@ public class VisuFrame extends JFrame {
 		super(title);
 		
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setSize(800, 480);
+		setSize(800, 630);
 		setVisible(true);
 	}
 	

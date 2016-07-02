@@ -1,7 +1,11 @@
 import java.awt.BorderLayout;
+
 import javax.swing.UIManager;
 import javax.swing.UnsupportedLookAndFeelException;
 
+import examples.http_1.HttpGetArduinoExample;
+import examples.http_2.SiloServerPanel;
+import examples.http_2.SiloServerView;
 import examples.test.ThreadExamplePanel;
 
 /**
@@ -19,13 +23,16 @@ public class Start
 		mainFrame.getContentPane().setLayout(new BorderLayout());
 		
 		// Einfügen der Beispielvisualisierung mit Selbsttest
-		mainFrame.getContentPane().add(new ThreadExamplePanel());	// Einfügen der Beispielvisualisierung
+//		mainFrame.getContentPane().add(new ThreadExamplePanel());	// Einfügen der Beispielvisualisierung
 		
 		// Einfügen der Beispielvisualisierung mit Arduino und Ethernetshield
 //		mainFrame.getContentPane().add(new HttpGetArduinoExample());
 		
 		// Einfügen der Beispielvisualisierung mit Datenbankabfrage
 //		mainFrame.getContentPane().add(new DBExamplePanel());	// Einfügen der Beispielvisualisierung
+		
+		// Einfügen der Beispielvisualisierung mit Silo-Modell
+		mainFrame.getContentPane().add(new SiloServerPanel());
 		
 		mainFrame.setVisible(true);
 		mainFrame.getContentPane().validate();

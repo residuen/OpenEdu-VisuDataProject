@@ -68,7 +68,7 @@ public class HttpGetArduinoExample extends JPanel {
 				{
 					
 					// HTTP-Anfrage an URL oder IP-Adresse senden, Ergebnis in anfrage speichern
-					anfrage = clientConnection.sendRequest("http://192.168.1.177");
+					anfrage = clientConnection.sendRequest("http://172.16.1.1");
 //					 System.out.println("anfrage="+anfrage);
 					
 					// Loeschen nicht benoetigter Zeichen 
