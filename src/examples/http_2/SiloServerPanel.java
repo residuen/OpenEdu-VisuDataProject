@@ -39,7 +39,7 @@ public class SiloServerPanel extends JPanel implements ActionListener {
 		Box vBox = Box.createVerticalBox();
 		
 		Dimension dimButton = new Dimension(120, 30);
-		Dimension dimTField = new Dimension(210, 25);
+		Dimension dimTField = new Dimension(210, 23);
 		
 		JLabel label;
 		JTextField textfield;
@@ -57,18 +57,19 @@ public class SiloServerPanel extends JPanel implements ActionListener {
 		buttons.put("server", button);
 		vBox.add(button);
 		
-		button = new JButton("Neustart");
+		button = new JButton("Reset");
 		button.addActionListener(this);
 		button.setPreferredSize(dimButton);
 		button.setMaximumSize(dimButton);
 		button.setMinimumSize(dimButton);
 		vBox.add(button);
 		
-		button = new JButton("Stop");
+		button = new JButton("Start");
 		button.addActionListener(this);
 		button.setPreferredSize(dimButton);
 		button.setMaximumSize(dimButton);
 		button.setMinimumSize(dimButton);
+		buttons.put("start", button);
 		vBox.add(button);
 		vBox.add(Box.createVerticalStrut(8));
 		
@@ -99,8 +100,9 @@ public class SiloServerPanel extends JPanel implements ActionListener {
 		
 		vBox2 = Box.createVerticalBox();
 		panel = new JPanel();
-		panel.setLayout(new GridLayout(1,1)); //new BoxLayout(panel, BoxLayout.Y_AXIS));
-		label = new JLabel("<html>Ventil 1<br>Ablauf: %/sek.</html>");
+//		panel.setLayout(new GridLayout(1,1)); //new BoxLayout(panel, BoxLayout.Y_AXIS));
+//		panel.setLayout(new BoxLayout(panel, BoxLayout.Y_AXIS));
+		label = new JLabel("<html>Ventil 1<br>Durchfl. %/sek.</html>");
 		vBox2.add(label);
 		textfield = new JTextField("15");
 		textfield.setName("ventil1abl");
@@ -108,57 +110,61 @@ public class SiloServerPanel extends JPanel implements ActionListener {
 		textfield.setMaximumSize(dimTField);
 		textfelder.put("ventil1abl", textfield);
 		vBox2.add(textfield);
-		panel.add(vBox2, BorderLayout.WEST);
-		vBox.add(panel);
+//		panel.add(vBox2, BorderLayout.WEST);
+		vBox.add(vBox2);
 		vBox.add(Box.createVerticalStrut(8));
 		
-		panel.setLayout(new BoxLayout(panel, BoxLayout.Y_AXIS));
-		label = new JLabel("<html>Ventil 2<br>Ablauf: %/sek.</html>");
-		panel.add(label);
+		vBox2 = Box.createVerticalBox();
+//		panel.setLayout(new BoxLayout(panel, BoxLayout.Y_AXIS));
+		label = new JLabel("<html>Ventil 2<br>Durchfl. %/sek.</html>");
+		vBox2.add(label);
 		textfield = new JTextField("5");
 		textfield.setName("ventil2abl");
 		textfield.addActionListener(this);
 		textfield.setMaximumSize(dimTField);
 		textfelder.put("ventil2abl", textfield);
-		panel.add(textfield);
-		vBox.add(panel);
+		vBox2.add(textfield);
+		vBox.add(vBox2);
 		vBox.add(Box.createVerticalStrut(8));
 		
-		panel.setLayout(new BoxLayout(panel, BoxLayout.Y_AXIS));
-		label = new JLabel("<html>Ventil 3<br>Ablauf: %/sek.</html>");
-		panel.add(label);
+		vBox2 = Box.createVerticalBox();
+//		panel.setLayout(new BoxLayout(panel, BoxLayout.Y_AXIS));
+		label = new JLabel("<html>Ventil 3<br>Durchfl. %/sek.</html>");
+		vBox2.add(label);
 		textfield = new JTextField("3");
 		textfield.setName("ventil3abl");
 		textfield.addActionListener(this);
 		textfield.setMaximumSize(dimTField);
 		textfelder.put("ventil3abl", textfield);
-		panel.add(textfield);
-		vBox.add(panel);
+		vBox2.add(textfield);
+		vBox.add(vBox2);
 		vBox.add(Box.createVerticalStrut(12));
 		
-		panel.setLayout(new BoxLayout(panel, BoxLayout.Y_AXIS));
+		vBox2 = Box.createVerticalBox();
+//		panel.setLayout(new BoxLayout(panel, BoxLayout.Y_AXIS));
 		label = new JLabel("<html>Füllstand S1<br>Startwert in %</html>");
-		panel.add(label);
+		vBox2.add(label);
 		textfield = new JTextField("75");
 		textfield.setName("silo1start");
 		textfield.addActionListener(this);
 		textfield.setMaximumSize(dimTField);
 		textfelder.put("silo1start", textfield);
-		panel.add(textfield);
-		vBox.add(panel);
+		vBox2.add(textfield);
+		vBox.add(vBox2);
 		vBox.add(Box.createVerticalStrut(8));
 		
-		panel.setLayout(new BoxLayout(panel, BoxLayout.Y_AXIS));
+		vBox2 = Box.createVerticalBox();
+//		panel.setLayout(new BoxLayout(panel, BoxLayout.Y_AXIS));
 		label = new JLabel("<html>Füllstand S2<br>Startwert in %</html>");
-		panel.add(label);
+		vBox2.add(label);
 		textfield = new JTextField("50");
 		textfield.setName("silo2start");
 		textfield.addActionListener(this);
 		textfield.setMaximumSize(dimTField);
 		textfelder.put("silo2start", textfield);
-		panel.add(textfield);
-		panel.add(new JLabel(" "));
-		vBox.add(panel);
+		vBox2.add(textfield);
+//		vBox2.add(new JLabel(" "));
+		vBox.add(vBox2);
 		vBox.add(Box.createVerticalStrut(8));
 
 		add(vBox, BorderLayout.WEST);
@@ -195,8 +201,10 @@ public class SiloServerPanel extends JPanel implements ActionListener {
 				((JButton)buttons.get("server")).setText("Server starten");
 			}
 			else
-				if(cmd.contains("Neustart"))
+				if(cmd.contains("Reset"))
 				{
+					killController();
+					
 					((JToggleButton)buttons.get("Ventil 1")).setSelected(false);
 					((JToggleButton)buttons.get("Ventil 2")).setSelected(false);
 					((JToggleButton)buttons.get("Ventil 3")).setSelected(false);
@@ -214,63 +222,69 @@ public class SiloServerPanel extends JPanel implements ActionListener {
 					siloView.reset();
 					
 					siloView.repaint();
-					
-					killController();
-		
-					pws = new SiloController(siloView);
-					pws.start();
 				}
 				else
-					if(cmd.contains("Stop"))
+					if(cmd.contains("Start"))
 					{
 						killController();
+						pws = new SiloController(siloView);
+						pws.start();
+						
+						((JButton)buttons.get("start")).setText("Stopp");
 					}
 					else
-						if(cmd.contains("Ventil 1"))
+						if(cmd.contains("Stopp"))
 						{
-							siloView.setVentil1(((JToggleButton)arg0.getSource()).isSelected());
+							killController();
+							
+							((JButton)buttons.get("start")).setText("Start");
 						}
 						else
-							if(cmd.contains("Ventil 2"))
+							if(cmd.contains("Ventil 1"))
 							{
-								siloView.setVentil2(((JToggleButton)arg0.getSource()).isSelected());
+								siloView.setVentil1(((JToggleButton)arg0.getSource()).isSelected());
 							}
 							else
-								if(cmd.contains("Ventil 3"))
+								if(cmd.contains("Ventil 2"))
 								{
-									siloView.setVentil3(((JToggleButton)arg0.getSource()).isSelected());
+									siloView.setVentil2(((JToggleButton)arg0.getSource()).isSelected());
 								}
 								else
-								{
-									JTextField tf = (JTextField)arg0.getSource();
-									cmd = tf.getName();
-									double value = convert2Double(tf);
-									System.out.println(cmd);
-									
-									if(cmd.contains("ventil1abl"))
+									if(cmd.contains("Ventil 3"))
 									{
-										siloView.setVentil1durchfl(value); // System.out.println(tf.getText());
+										siloView.setVentil3(((JToggleButton)arg0.getSource()).isSelected());
 									}
 									else
-										if(cmd.contains("ventil2abl"))
+									{
+										JTextField tf = (JTextField)arg0.getSource();
+										cmd = tf.getName();
+										double value = convert2Double(tf);
+										System.out.println(cmd);
+										
+										if(cmd.contains("ventil1abl"))
 										{
-											siloView.setVentil2durchfl(value); // System.out.println(tf.getText());
+											siloView.setVentil1durchfl(value); // System.out.println(tf.getText());
 										}
 										else
-											if(cmd.contains("ventil3abl"))
+											if(cmd.contains("ventil2abl"))
 											{
-												siloView.setVentil3durchfl(value); // System.out.println(tf.getText());
+												siloView.setVentil2durchfl(value); // System.out.println(tf.getText());
 											}
 											else
-												if(cmd.contains("silo1start"))
+												if(cmd.contains("ventil3abl"))
 												{
-													siloView.setValue_silo_links(value); // System.out.println(tf.getText());
+													siloView.setVentil3durchfl(value); // System.out.println(tf.getText());
 												}
 												else
-													if(cmd.contains("silo2start"))
+													if(cmd.contains("silo1start"))
 													{
-														siloView.setValue_silo_rechts(value); // System.out.println(tf.getText());
+														siloView.setValue_silo_links(value); // System.out.println(tf.getText());
 													}
+													else
+														if(cmd.contains("silo2start"))
+														{
+															siloView.setValue_silo_rechts(value); // System.out.println(tf.getText());
+														}
 						}
 				
 		siloView.repaint();
