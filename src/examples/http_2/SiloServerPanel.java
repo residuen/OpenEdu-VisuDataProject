@@ -50,7 +50,6 @@ public class SiloServerPanel extends JPanel implements ActionListener {
 		
 		button = new JButton("Server starten");
 		button.addActionListener(this);
-		button.addActionListener(this);
 		button.setPreferredSize(dimButton);
 		button.setMaximumSize(dimButton);
 		button.setMinimumSize(dimButton);

@@ -20,7 +20,7 @@ public class Start
 		initLookAndFeel();	// Setzen des Look & Feels
 		
 		VisuFrame mainFrame = new VisuFrame("VisuDataProject - Visualisierung von Prozessdaten");
-		mainFrame.getContentPane().setLayout(new BorderLayout());
+//		mainFrame.getContentPane().setLayout(new BorderLayout());
 		
 		// Einfügen der Beispielvisualisierung mit Selbsttest
 //		mainFrame.getContentPane().add(new ThreadExamplePanel());	// Einfügen der Beispielvisualisierung
@@ -32,8 +32,9 @@ public class Start
 //		mainFrame.getContentPane().add(new DBExamplePanel());	// Einfügen der Beispielvisualisierung
 		
 		// Einfügen der Beispielvisualisierung mit Silo-Modell
-		mainFrame.getContentPane().add(new SiloServerPanel());
+//		mainFrame.getContentPane().add(new SiloServerPanel());
 		
+		mainFrame.addVisuComponent(new SiloServerPanel());
 		mainFrame.setVisible(true);
 		mainFrame.getContentPane().validate();
 	}
